@@ -35,10 +35,11 @@ export const MY_FORMATS = {
 export class NgxDateTimePickerComponent implements OnInit, ControlValueAccessor {
 
     // public date = new FormControl(moment());
-    public selectedTime = moment().format('HH:mm');
+    public selectedTime = moment().format();
     public selectedDate = moment().format();
     public loadInitial = false;
     public value;
+    public showTimePicker = false;
     @Input() weeks: number[] = [0, 2, 4, 6, 8, 12, 16, 24];
     @Input() modelValue: any;
     @Input() showTime = false;
@@ -80,6 +81,11 @@ export class NgxDateTimePickerComponent implements OnInit, ControlValueAccessor 
 
     }
 
+    public toggleTimePicker(status: boolean): void {
+        this.showTimePicker = status;
+        return;
+    }
+
 
     public setCurrentTime() {
 
@@ -89,10 +95,14 @@ export class NgxDateTimePickerComponent implements OnInit, ControlValueAccessor 
     }
 
     public weekSelect($event) {
-        const dateToUse = moment().format();
-        const nextWeekDate = moment(dateToUse).add($event, 'weeks');
+        const dateToUse = moment(this.value).format();
+        const nextWeekDate = moment(dateToUse).add($event.value, 'weeks');
         const nextWeekTime = dateToUse;
         this.setDateTime(nextWeekDate, nextWeekTime);
+    }
+
+    public selectionChange($event) {
+        console.log('Week selected', $event);
     }
 
 
@@ -133,14 +143,14 @@ export class NgxDateTimePickerComponent implements OnInit, ControlValueAccessor 
         const newDate = moment(setDate).format('DD-MM-YYYY');
         let newTime;
         if (this.showTime) {
-            newTime = setTime;
+            newTime = moment(setTime).format('HH:mm:ss');
         } else {
             newTime = '00:00:00';
         }
         const newDateTime = moment(newDate + '' + newTime, 'DD-MM-YYYY HH:mm:ss');
         const dateTimeString = moment(newDateTime).format();
         this.selectedDate = dateTimeString;
-        this.selectedTime = newTime;
+        this.selectedTime = dateTimeString;
         this.value = dateTimeString;
         this.onChange(this.value);
 
