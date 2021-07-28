@@ -590,6 +590,94 @@ export class QuestionFactory {
     return question;
   }
 
+  toAmrsLocationQuestion(schemaQuestion: any): UiSelectQuestion {
+    const question = new UiSelectQuestion({
+      options: [], type: '', key: '', searchFunction: function () { },
+      resolveFunction: function () {
+
+      }
+    });
+    question.label = schemaQuestion.label;
+    question.key = schemaQuestion.id;
+    question.renderingType = schemaQuestion.type;
+    question.renderingType = 'remote-select';
+    question.validators = this.addValidators(schemaQuestion);
+    question.extras = schemaQuestion;
+    question.dataSource = 'amrsLocation';
+
+    const mappings: any = {
+      label: 'label',
+      required: 'required',
+      id: 'key'
+    };
+
+    this.copyProperties(mappings, schemaQuestion, question);
+    this.addDisableOrHideProperty(schemaQuestion, question);
+    this.addAlertProperty(schemaQuestion, question);
+    this.addHistoricalExpressions(schemaQuestion, question);
+    this.addCalculatorProperty(schemaQuestion, question);
+    return question;
+  }
+
+
+  toreferralLocationQuestion(schemaQuestion: any): UiSelectQuestion {
+    const question = new UiSelectQuestion({
+      options: [], type: '', key: '', searchFunction: function () { },
+      resolveFunction: function () {
+
+      }
+    });
+    question.label = schemaQuestion.label;
+    question.key = schemaQuestion.id;
+    question.renderingType = schemaQuestion.type;
+    question.renderingType = 'remote-select';
+    question.validators = this.addValidators(schemaQuestion);
+    question.extras = schemaQuestion;
+    question.dataSource = 'referralLocation';
+
+    const mappings: any = {
+      label: 'label',
+      required: 'required',
+      id: 'key'
+    };
+
+    this.copyProperties(mappings, schemaQuestion, question);
+    this.addDisableOrHideProperty(schemaQuestion, question);
+    this.addAlertProperty(schemaQuestion, question);
+    this.addHistoricalExpressions(schemaQuestion, question);
+    this.addCalculatorProperty(schemaQuestion, question);
+    return question;
+  }
+
+  toNonAmrsLocationQuestion(schemaQuestion: any): UiSelectQuestion {
+    const question = new UiSelectQuestion({
+      options: [], type: '', key: '', searchFunction: function () { },
+      resolveFunction: function () {
+
+      }
+    });
+    question.label = schemaQuestion.label;
+    question.key = schemaQuestion.id;
+    question.renderingType = schemaQuestion.type;
+    question.renderingType = 'remote-select';
+    question.validators = this.addValidators(schemaQuestion);
+    question.extras = schemaQuestion;
+    question.dataSource = 'nonAmrsLocation';
+
+    const mappings: any = {
+      label: 'label',
+      required: 'required',
+      id: 'key'
+    };
+
+    this.copyProperties(mappings, schemaQuestion, question);
+    this.addDisableOrHideProperty(schemaQuestion, question);
+    this.addAlertProperty(schemaQuestion, question);
+    this.addHistoricalExpressions(schemaQuestion, question);
+    this.addCalculatorProperty(schemaQuestion, question);
+    return question;
+  }
+
   toTestOrderQuestion(schemaQuestion: any): TestOrderQuestion {
     const question = new TestOrderQuestion({
       type: '',
@@ -727,6 +815,10 @@ export class QuestionFactory {
         return this.toConceptAnswerSelect(schema);
       case 'encounterLocation':
         return this.toEncounterLocationQuestion(schema);
+      case 'amrsLocation':
+          return this.toAmrsLocationQuestion(schema);
+      case 'nonAmrsLocation':
+            return this.toNonAmrsLocationQuestion(schema);
       case 'encounterDatetime':
         return this.toEncounterDatetimeQuestion(schema);
       case 'encounterProvider':
