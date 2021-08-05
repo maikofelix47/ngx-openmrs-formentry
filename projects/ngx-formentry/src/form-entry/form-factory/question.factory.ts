@@ -592,10 +592,11 @@ export class QuestionFactory {
 
   toAmrsLocationQuestion(schemaQuestion: any): UiSelectQuestion {
     const question = new UiSelectQuestion({
-      options: [], type: '', key: '', searchFunction: function () { },
-      resolveFunction: function () {
-
-      }
+      options: [],
+      type: '',
+      key: '',
+      searchFunction: function () {},
+      resolveFunction: function () {}
     });
     question.label = schemaQuestion.label;
     question.key = schemaQuestion.id;
@@ -619,13 +620,13 @@ export class QuestionFactory {
     return question;
   }
 
-
-  toreferralLocationQuestion(schemaQuestion: any): UiSelectQuestion {
+  tointerFacilityLocationQuestion(schemaQuestion: any): UiSelectQuestion {
     const question = new UiSelectQuestion({
-      options: [], type: '', key: '', searchFunction: function () { },
-      resolveFunction: function () {
-
-      }
+      options: [],
+      type: '',
+      key: '',
+      searchFunction: function () {},
+      resolveFunction: function () {}
     });
     question.label = schemaQuestion.label;
     question.key = schemaQuestion.id;
@@ -633,7 +634,7 @@ export class QuestionFactory {
     question.renderingType = 'remote-select';
     question.validators = this.addValidators(schemaQuestion);
     question.extras = schemaQuestion;
-    question.dataSource = 'referralLocation';
+    question.dataSource = 'interFacilityLocation';
 
     const mappings: any = {
       label: 'label',
@@ -651,10 +652,11 @@ export class QuestionFactory {
 
   toNonAmrsLocationQuestion(schemaQuestion: any): UiSelectQuestion {
     const question = new UiSelectQuestion({
-      options: [], type: '', key: '', searchFunction: function () { },
-      resolveFunction: function () {
-
-      }
+      options: [],
+      type: '',
+      key: '',
+      searchFunction: function () {},
+      resolveFunction: function () {}
     });
     question.label = schemaQuestion.label;
     question.key = schemaQuestion.id;
@@ -816,9 +818,11 @@ export class QuestionFactory {
       case 'encounterLocation':
         return this.toEncounterLocationQuestion(schema);
       case 'amrsLocation':
-          return this.toAmrsLocationQuestion(schema);
+        return this.toAmrsLocationQuestion(schema);
       case 'nonAmrsLocation':
-            return this.toNonAmrsLocationQuestion(schema);
+        return this.toNonAmrsLocationQuestion(schema);
+      case 'interFacilityLocation':
+        return this.tointerFacilityLocationQuestion(schema);
       case 'encounterDatetime':
         return this.toEncounterDatetimeQuestion(schema);
       case 'encounterProvider':

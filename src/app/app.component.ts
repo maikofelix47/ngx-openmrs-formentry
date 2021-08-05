@@ -73,8 +73,18 @@ export class AppComponent implements OnInit {
       searchOptions: this.sampleSearch,
       resolveSelectedValue: this.sampleResolve
     });
-    this.dataSources.registerDataSource('amrsLocation', { searchOptions: this.sampleSearch, resolveSelectedValue: this.sampleResolve });
-    this.dataSources.registerDataSource('nonAmrsLocation', { searchOptions: this.sampleSearch, resolveSelectedValue: this.sampleResolve });
+    this.dataSources.registerDataSource('amrsLocation', {
+      searchOptions: this.sampleSearch,
+      resolveSelectedValue: this.sampleResolve
+    });
+    this.dataSources.registerDataSource('nonAmrsLocation', {
+      searchOptions: this.sampleSearch,
+      resolveSelectedValue: this.sampleResolve
+    });
+    this.dataSources.registerDataSource('interFacilityLocation', {
+      searchOptions: this.sampleSearch,
+      resolveSelectedValue: this.sampleResolve
+    });
 
     const ds = {
       dataSourceOptions: { concept: undefined },

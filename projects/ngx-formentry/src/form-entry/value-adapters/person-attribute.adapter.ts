@@ -78,10 +78,11 @@ export class PersonAttribuAdapter implements ValueAdapter {
     array: Array<NodeBase>
   ) {
     if (
-        rootNode.question.extras &&
-        (rootNode.question.extras.type === 'personAttribute' ||
+      rootNode.question.extras &&
+      (rootNode.question.extras.type === 'personAttribute' ||
         rootNode.question.extras.type === 'amrsLocation' ||
-        rootNode.question.extras.type === 'nonAmrsLocation')
+        rootNode.question.extras.type === 'nonAmrsLocation' ||
+        rootNode.question.extras.type === 'interFacilityLocation')
     ) {
       array.push(rootNode);
     }
